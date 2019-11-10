@@ -31,3 +31,7 @@ TabBarView {
     Text("3").tabBarItem(title: "item3", image: UIImage(systemName: "circle.fill"))
 }
 ```
+
+# Other extensions
+
+[noppefoxwolf/RefreshUI](https://github.com/noppefoxwolf/RefreshUI)
