@@ -10,28 +10,17 @@ import UIKit
 
 public struct TabBarView: UIViewControllerRepresentable {
     public typealias UIViewControllerType = UITabBarController
-    let viewControllers: [UIHostingController<AnyView>]
+    let contents: [TabBarItem]
+    let store: TabBarViewStore
     
-    public init(@TabItemBuilder content: () -> TabBarItem) {
-        viewControllers = [content()].map({ (item) in
-            let vc = UIHostingController(rootView: item.view)
-            let tabBarItem = UITabBarItem()
-            tabBarItem.title = item.title
-            tabBarItem.image = item.image
-            vc.tabBarItem = tabBarItem
-            return vc
-        })
+    public init(store: TabBarViewStore, @TabItemBuilder content: () -> TabBarItem) {
+        self.store = store
+        self.contents = [content()]
     }
     
-    public init(@TabItemBuilder content: () -> [TabBarItem]) {
-        viewControllers = content().map({ (item) in
-            let vc = UIHostingController(rootView: item.view)
-            let tabBarItem = UITabBarItem()
-            tabBarItem.title = item.title
-            tabBarItem.image = item.image
-            vc.tabBarItem = tabBarItem
-            return vc
-        })
+    public init(store: TabBarViewStore, @TabItemBuilder content: () -> [TabBarItem]) {
+        self.store = store
+        self.contents = content()
     }
     
     public func makeUIViewController(context: Context) -> UIViewControllerType {
@@ -39,11 +28,30 @@ public struct TabBarView: UIViewControllerRepresentable {
     }
     
     public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        uiViewController.setViewControllers(viewControllers, animated: false)
+        store.update(contents)
+        uiViewController.setViewControllers(store.viewControllers.sorted(by: { $0.key > $1.key }).map({ $0.value }), animated: false)
+    }
+}
+
+public class TabBarViewStore {
+    var viewControllers: [Int : UIViewController] = [:]
+    
+    func update(_ contents: [TabBarItem]) {
+        var result: [Int : UIViewController] = [:]
+        for content in contents {
+            let vc: UIViewController = viewControllers.first(where: { $0.key == content.tag })?.value ?? UIHostingController(rootView: content.view)
+            let tabBarItem = UITabBarItem()
+            tabBarItem.title = content.title
+            tabBarItem.image = content.image
+            vc.tabBarItem = tabBarItem
+            result[content.tag] = vc
+        }
+        self.viewControllers = result
     }
 }
 
 public struct TabBarItem {
+    let tag: Int
     let view: AnyView
     let title: String?
     let image: UIImage?
@@ -51,7 +59,7 @@ public struct TabBarItem {
 
 @_functionBuilder public struct TabItemBuilder {
     public static func buildBlock() -> TabBarItem {
-        return EmptyView().tabBarItem()
+        return EmptyView().tabBarItem(tag: 0)
     }
 
     public static func buildBlock(_ content: TabBarItem) -> TabBarItem {
@@ -72,7 +80,7 @@ public struct TabBarItem {
 }
 
 public extension View {
-    func tabBarItem(title: String? = nil, image: UIImage? = nil) -> TabBarItem {
-        TabBarItem(view: AnyView(self), title: title, image: image)
+    func tabBarItem(tag: Int, title: String? = nil, image: UIImage? = nil) -> TabBarItem {
+        TabBarItem(tag: tag, view: AnyView(self), title: title, image: image)
     }
 }
