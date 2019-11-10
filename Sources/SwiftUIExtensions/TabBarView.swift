@@ -36,6 +36,10 @@ public struct TabBarView: UIViewControllerRepresentable {
 public class TabBarViewStore {
     var viewControllers: [Int : UIViewController] = [:]
     
+    public init() {
+        
+    }
+    
     func update(_ contents: [TabBarItem]) {
         var result: [Int : UIViewController] = [:]
         for content in contents {
