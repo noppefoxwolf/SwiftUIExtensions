@@ -2,7 +2,7 @@
 
 ## Presentation items
 
-```
+```swift
 @State var alertItem: AlertItem? = nil
 @State var sheetItem: SheetItem? = nil
 @State var actionSheetItem: ActionSheetItem? = nil
@@ -22,7 +22,7 @@ currentView
 
 Tab style view that able to keep view presentation state.
 
-```
+```swift
 TabBarView {
     Text("1").tabBarItem(title: "item1", image: UIImage(systemName: "circle.fill"))
     
