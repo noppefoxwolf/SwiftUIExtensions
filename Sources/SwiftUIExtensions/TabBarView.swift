@@ -29,7 +29,7 @@ public struct TabBarView: UIViewControllerRepresentable {
     
     public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         store.update(contents)
-        uiViewController.setViewControllers(store.viewControllers.sorted(by: { $0.key > $1.key }).map({ $0.value }), animated: false)
+        uiViewController.setViewControllers(store.viewControllers.sorted(by: { $0.key < $1.key }).map({ $0.value }), animated: false)
     }
 }
 
