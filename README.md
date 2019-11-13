@@ -36,7 +36,7 @@ TabBarView {
 
 Easy to wrap UIView and optimizing differential update.
 
-```
+```swift
 import UIKit
 import SwiftUIExtensions
 typealias UITextView = SwiftUIExtensions.UIView<UIKit.UITextView, String>
