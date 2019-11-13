@@ -32,6 +32,23 @@ TabBarView {
 }
 ```
 
+## SwiftUIExtensions.UIView
+
+Easy to wrap UIView and optimizing differential update.
+
+```
+import UIKit
+import SwiftUIExtensions
+typealias UITextView = SwiftUIExtensions.UIView<UIKit.UITextView, String>
+```
+
+```swift
+UITextView(text) { (textView, value, context) in
+    // call only value changed
+    uiView.attributedText = NSAttributedString(string: value, options: options)
+}
+```
+
 # Other extensions
 
 [noppefoxwolf/RefreshUI](https://github.com/noppefoxwolf/RefreshUI)
