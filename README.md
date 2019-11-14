@@ -13,6 +13,15 @@ currentView
     .actionSheet(item: $actionSheetItem, content: { $0.actionSheet })
 ```
 
+## Fitting Image Scale
+
+```swift
+Image("img").fitting(width: 56, height: 32, contentMode: .fill)
+Image("img").fitting(width: 45, height: 86, contentMode: .fit)
+```
+
+<img src="https://github.com/noppefoxwolf/SwiftUIExtensions/blob/master/.github/fitting.png" width="320">
+
 ## UIKit Wrapper
 
 - ActivityIndicator
