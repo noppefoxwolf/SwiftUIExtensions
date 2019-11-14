@@ -32,12 +32,14 @@ Image("img").fitting(width: 45, height: 86, contentMode: .fit)
 Tab style view that able to keep view presentation state.
 
 ```swift
-TabBarView {
-    Text("1").tabBarItem(title: "item1", image: UIImage(systemName: "circle.fill"))
-    
-    Text("2").tabBarItem(title: "item2", image: UIImage(systemName: "circle.fill"))
+private let tabBarViewStore: TabBarViewStore = .init()
 
-    Text("3").tabBarItem(title: "item3", image: UIImage(systemName: "circle.fill"))
+TabBarView(store: tabBarViewStore) {
+    Text("1").tabBarItem(tag: 0, title: "item1", image: UIImage(systemName: "circle.fill"))
+    
+    Text("2").tabBarItem(tag: 1, title: "item2", image: UIImage(systemName: "circle.fill"))
+
+    Text("3").tabBarItem(tag: 2, title: "item3", image: UIImage(systemName: "circle.fill"))
 }
 ```
 
