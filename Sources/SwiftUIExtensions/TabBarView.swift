@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+
+#if canImport(UIKit)
 import UIKit
 
 public struct TabBarView: UIViewControllerRepresentable {
@@ -88,3 +90,4 @@ public extension View {
         TabBarItem(tag: tag, view: AnyView(self), title: title, image: image)
     }
 }
+#endif
