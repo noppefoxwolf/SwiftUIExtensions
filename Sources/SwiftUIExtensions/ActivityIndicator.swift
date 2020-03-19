@@ -7,8 +7,9 @@
 //
 
 import SwiftUI
-import UIKit
 
+#if canImport(UIKit)
+import UIKit
 public struct ActivityIndicator: UIViewRepresentable {
     public typealias UIViewType = UIActivityIndicatorView
     let style: UIActivityIndicatorView.Style
@@ -33,3 +34,4 @@ struct ActivityIndicator_Previews: PreviewProvider {
         ActivityIndicator(style: .medium, isAnimating: .constant(false))
     }
 }
+#endif
