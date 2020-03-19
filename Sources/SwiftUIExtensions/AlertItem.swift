@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 public struct AlertItem: Identifiable {
     public let id: String
     public let alert: Alert
@@ -16,3 +17,4 @@ public struct AlertItem: Identifiable {
         self.id = id
     }
 }
+#endif
