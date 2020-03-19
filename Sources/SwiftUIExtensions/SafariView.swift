@@ -9,6 +9,7 @@
 import SwiftUI
 import SafariServices
 
+#if os(iOS)
 public struct SafariView: UIViewControllerRepresentable {
     public typealias UIViewControllerType = SFSafariViewController
 
@@ -33,4 +34,6 @@ struct SafariView_Previews: PreviewProvider {
         SafariView(URL(string: "https://david.y4ng.fr")!)
     }
 }
+#endif
+
 #endif
