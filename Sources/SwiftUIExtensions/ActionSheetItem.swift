@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 public struct ActionSheetItem: Identifiable {
     public let id: String
     public let actionSheet: ActionSheet
@@ -16,3 +17,4 @@ public struct ActionSheetItem: Identifiable {
         self.id = id
     }
 }
+#endif
