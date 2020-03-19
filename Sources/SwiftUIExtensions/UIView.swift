@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+
+#if canImport(UIKit)
 import UIKit
 
 public struct UIView<UIViewType: UIKit.UIView, Value: Hashable>: UIViewRepresentable {
@@ -28,3 +30,4 @@ public struct UIView<UIViewType: UIKit.UIView, Value: Hashable>: UIViewRepresent
         uiView.tag = self.value.hashValue
     }
 }
+#endif
