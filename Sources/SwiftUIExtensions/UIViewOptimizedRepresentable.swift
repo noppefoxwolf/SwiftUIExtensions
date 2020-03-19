@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 public protocol UIViewOptimizedRepresentable: UIViewRepresentable {
     associatedtype Value: Hashable
     var value: Value { get }
@@ -21,3 +22,4 @@ public extension UIViewOptimizedRepresentable {
         uiView.tag = self.value.hashValue
     }
 }
+#endif
