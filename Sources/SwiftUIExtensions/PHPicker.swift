@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 import Photos
 
+@available(iOS 14, *)
 struct PHPicker: UIViewControllerRepresentable, Identifiable {
     let id: String = "dev.noppe.ImagePicker"
     @Environment(\.presentationMode) var presentationMode
