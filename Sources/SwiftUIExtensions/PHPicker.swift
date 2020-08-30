@@ -10,13 +10,13 @@ import PhotosUI
 import Photos
 
 @available(iOS 14, *)
-struct PHPicker: UIViewControllerRepresentable, Identifiable {
-    let id: String = "dev.noppe.ImagePicker"
-    @Environment(\.presentationMode) var presentationMode
+public struct PHPicker: UIViewControllerRepresentable, Identifiable {
+    public let id: String = "dev.noppe.ImagePicker"
+    @Environment(\.presentationMode) public var presentationMode
     let onCompletion: ([PHPickerResult]) -> Void
     let configuration: PHPickerConfiguration
     
-    init(
+    public init(
         configuration: PHPickerConfiguration = .init(photoLibrary: PHPhotoLibrary.shared()),
         onCompletion: @escaping (([PHPickerResult]) -> Void)) {
         self.onCompletion = onCompletion
@@ -36,16 +36,16 @@ struct PHPicker: UIViewControllerRepresentable, Identifiable {
         }
     }
     
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<Self>) -> PHPickerViewController {
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<Self>) -> PHPickerViewController {
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = context.coordinator
         return picker
     }
     
-    func updateUIViewController(_ uiViewController: PHPickerViewController, context: UIViewControllerRepresentableContext<Self>) {
+    public func updateUIViewController(_ uiViewController: PHPickerViewController, context: UIViewControllerRepresentableContext<Self>) {
     }
 }
