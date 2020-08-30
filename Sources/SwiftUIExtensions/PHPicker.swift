@@ -23,14 +23,14 @@ public struct PHPicker: UIViewControllerRepresentable, Identifiable {
         self.configuration = configuration
     }
     
-    class Coordinator: NSObject, PHPickerViewControllerDelegate {
+    public class Coordinator: NSObject, PHPickerViewControllerDelegate {
         let parent: PHPicker
         
         init(_ parent: PHPicker) {
             self.parent = parent
         }
         
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             parent.onCompletion(results)
             parent.presentationMode.wrappedValue.dismiss()
         }
