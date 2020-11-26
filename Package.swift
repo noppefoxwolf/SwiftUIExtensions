@@ -11,6 +11,10 @@ let package = Package(
         .library(
             name: "SwiftUIExtensions",
             targets: ["SwiftUIExtensions"]),
+        .library(
+            name: "SwiftUIExtensions-Dynamic",
+            type: .dynamic,
+            targets: ["SwiftUIExtensions"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
